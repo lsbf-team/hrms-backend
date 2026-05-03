@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/holidays")
+@RequestMapping("/api/auth/holidays")
 public class CompanyHolidayController {
 
     @Autowired

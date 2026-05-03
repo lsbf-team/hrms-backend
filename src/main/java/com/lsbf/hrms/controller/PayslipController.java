@@ -8,26 +8,30 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/payslips")
+@RequestMapping("/api/auth/payslip")
 public class PayslipController {
 
     @Autowired
     private PayslipService payslipService;
 
-    @GetMapping
+    @GetMapping("/fetch")
     public List<Payslip> getAllPayslips() {
         return payslipService.getAllPayslips();
-    }
-
-    @GetMapping("/{id}")
-    public Payslip getPayslipById(@PathVariable Long id) {
-        return payslipService.getPayslipById(id).orElse(null);
     }
 
     @PostMapping
     public Payslip createPayslip(@RequestBody Payslip payslip) {
         return payslipService.savePayslip(payslip);
     }
+
+
+
+/*
+    @GetMapping("/{id}")
+    public Payslip getPayslipById(@PathVariable Long id) {
+        return payslipService.getPayslipById(id).orElse(null);
+    }
+
 
     @PutMapping("/{id}")
     public Payslip updatePayslip(@PathVariable Long id, @RequestBody Payslip payslip) {
@@ -39,4 +43,5 @@ public class PayslipController {
     public void deletePayslip(@PathVariable Long id) {
         payslipService.deletePayslip(id);
     }
+*/
 }

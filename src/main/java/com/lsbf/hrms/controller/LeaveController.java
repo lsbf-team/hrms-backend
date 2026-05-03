@@ -8,35 +8,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/leaves")
+@RequestMapping("/api/auth/leave")
 public class LeaveController {
 
     @Autowired
     private LeaveService leaveService;
 
-    @GetMapping
+    @GetMapping("/fetch")
     public List<Leave> getAllLeaves() {
         return leaveService.getAllLeaves();
     }
 
-    @GetMapping("/{id}")
+  /*  @GetMapping("/{id}")
     public Leave getLeaveById(@PathVariable Long id) {
         return leaveService.getLeaveById(id).orElse(null);
-    }
-
+    }*/
     @PostMapping
     public Leave createLeave(@RequestBody Leave leave) {
         return leaveService.saveLeave(leave);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/status")
     public Leave updateLeave(@PathVariable Long id, @RequestBody Leave leave) {
         leave.setId(id);
         return leaveService.saveLeave(leave);
     }
-
+/*
     @DeleteMapping("/{id}")
     public void deleteLeave(@PathVariable Long id) {
         leaveService.deleteLeave(id);
-    }
+    }*/
 }

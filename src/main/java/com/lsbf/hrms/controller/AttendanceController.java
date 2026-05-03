@@ -8,26 +8,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/attendances")
+@RequestMapping("/api/auth/attendance")
 public class AttendanceController {
 
     @Autowired
     private AttendanceService attendanceService;
 
-    @GetMapping
+    @GetMapping("/fetch")
     public List<Attendance> getAllAttendances() {
         return attendanceService.getAllAttendances();
     }
 
+
+    @PostMapping("/check-in")
+    public Attendance checkIn(@RequestBody Attendance attendance) {
+        return attendanceService.saveAttendance(attendance);
+    }
+    @PostMapping("/check-out")
+    public Attendance checkOut(@RequestBody Attendance attendance) {
+        return attendanceService.saveAttendance(attendance);
+    }
+    /*
     @GetMapping("/{id}")
     public Attendance getAttendanceById(@PathVariable Long id) {
         return attendanceService.getAttendanceById(id).orElse(null);
     }
 
-    @PostMapping
-    public Attendance createAttendance(@RequestBody Attendance attendance) {
-        return attendanceService.saveAttendance(attendance);
-    }
 
     @PutMapping("/{id}")
     public Attendance updateAttendance(@PathVariable Long id, @RequestBody Attendance attendance) {
@@ -38,5 +44,5 @@ public class AttendanceController {
     @DeleteMapping("/{id}")
     public void deleteAttendance(@PathVariable Long id) {
         attendanceService.deleteAttendance(id);
-    }
+    }*/
 }
